@@ -1,0 +1,377 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+        .out-box
+        {
+             display: grid; 
+             /* grid-gap: 1em; */
+        }
+
+        .inner-wrapper
+        {
+            display: grid;
+            grid-template-columns: 40% 60%;
+            border: 2px solid;
+            /* grid-gap: 2em; */
+            /* border: 2px solid; */
+        }
+
+        .inner-wrapper:nth-child(odd)
+        {
+            margin-top: 30px;
+            margin-bottom: 50px;
+        }
+
+        .inner-wrapper:nth-child(even)
+        {
+            margin-top: 50px;
+            margin-bottom: 10px;
+        }
+
+        .left 
+        {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .right
+        {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        /* .left
+        {
+            display: grid;
+            grid-template-columns: 50% 50%; */
+            /* border: 2px solid;
+        } */
+
+        /* .right
+        {
+             display: grid; 
+             grid-template-rows: 10% 10% 10% 40%; 
+             border: 2px solid; 
+             border: 2px solid; 
+        } */
+
+        .book-cover
+        {
+            margin: 1em;
+            text-align: center;
+        }
+
+        .book-title
+        {
+            font-size: xx-large;
+            font-weight :bolder;
+            font-family: 'Times New Roman', Times, serif;
+            /* border: 2px solid; */
+            margin-top: 1em;
+            margin-bottom: 1em;
+            /* border: 2px solid; */
+        }
+
+        .book-author
+        {
+            font-size: x-large;
+            font-weight :bold;
+            font-family: 'Times New Roman', Times, serif;
+            /* border: 2px solid; */
+            margin-top: 1em;
+            margin-bottom: 1em;
+            /* border: 2px solid; */
+        }
+
+        .out-author
+        {
+            font-size: x-large;
+            font-family: 'Times New Roman', Times, serif;
+            margin-top: 1em;
+            margin-bottom: 1em;
+            /* border: 2px solid; */
+        }
+
+        .book-rating
+        {
+            font-size: x-large;
+            font-family: 'Times New Roman', Times, serif;
+            /* border: 2px solid; */
+            margin-top: 1em;
+            margin-bottom: 1em;
+            /* border: 2px solid; */
+        }
+
+        .book-desc
+        {
+            font-size: medium;
+            font-family: 'Times New Roman', Times, serif;
+            /* border: 2px solid; */
+            margin-top: 1em;
+            margin-bottom: 1em;
+            /* border: 2px solid; */
+        }
+
+        img
+        {
+            height : 342px;
+            width : 242px;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <div class="out-box">
+ 
+            <div class="inner-wrapper">
+                <!-- <div class="upper"> -->
+                    <div class="left">
+                        <div class="book-cover">
+                            <img src="{{bookList.0.imgLink}}" alt="book1">
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div class="book-title">
+                            {{bookList.0.bname}}
+                        </div>
+                        <span class="out-author">
+                            By
+                            <span class="book-author">
+                                {{bookList.0.aname}}
+                            </span>
+                        </span>
+                        <div class="book-rating">
+                            Rating : {{bookList.0.rate}}/5
+                        </div>
+                        <div class="book-desc">
+                            {{bookList.0.desc}}
+                        </div>
+                    </div>
+            </div>
+
+            <div class="inner-wrapper">
+                    <div class="left">
+                        <div class="book-cover">
+                            <img src="{{bookList.1.imgLink}}" alt="book1">
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div class="book-title">
+                            {{bookList.1.bname}}
+                        </div>
+                        <span class="out-author">
+                            By
+                            <span class="book-author">
+                                {{bookList.1.aname}}
+                            </span>
+                        </span>
+                        <div class="book-rating">
+                            Rating : {{bookList.1.rate}}/5
+                        </div>
+                        <div class="book-desc">
+                            {{bookList.1.desc}}
+                        </div>
+                    </div>
+                <!-- </div> -->
+                
+                <!-- <div class="lower">
+                    
+                    
+                </div>     -->
+            </div>
+
+            <div class="inner-wrapper">
+                <div class="left">
+                    <div class="book-cover">
+                        <img src="{{bookList.2.imgLink}}" alt="book1">
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="book-title">
+                        {{bookList.2.bname}}
+                    </div>
+                    <span class="out-author">
+                        By
+                        <span class="book-author">
+                            {{bookList.2.aname}}
+                        </span>
+                    </span>
+                    <div class="book-rating">
+                        Rating : {{bookList.2.rate}}/5
+                    </div>
+                    <div class="book-desc">
+                        {{bookList.2.desc}}
+                    </div>
+                </div>
+            <!-- </div> -->
+            
+            <!-- <div class="lower">
+                
+                
+            </div>     -->
+            </div>
+
+            <div class="inner-wrapper">
+            <div class="left">
+                <div class="book-cover">
+                    <img src="{{bookList.3.imgLink}}" alt="book1">
+                </div>
+            </div>
+            <div class="right">
+                <div class="book-title">
+                    {{bookList.3.bname}}
+                </div>
+                <span class="out-author">
+                    By
+                    <span class="book-author">
+                        {{bookList.3.aname}}
+                    </span>
+                </span>
+                <div class="book-rating">
+                    Rating : {{bookList.3.rate}}/5
+                </div>
+                <div class="book-desc">
+                    {{bookList.3.desc}}
+                </div>
+            </div>
+        <!-- </div> -->
+        
+        <!-- <div class="lower">
+            
+            
+        </div>     -->
+            </div>
+
+            <div class="inner-wrapper">
+        <div class="left">
+            <div class="book-cover">
+                <img src="{{bookList.4.imgLink}}" alt="book1">
+            </div>
+        </div>
+        <div class="right">
+            <div class="book-title">
+                {{bookList.4.bname}}
+            </div>
+            <span class="out-author">
+                By
+                <span class="book-author">
+                    {{bookList.4.aname}}
+                </span>
+            </span>
+            <div class="book-rating">
+                Rating : {{bookList.4.rate}}/5
+            </div>
+            <div class="book-desc">
+                {{bookList.4.desc}}
+            </div>
+        </div>
+    <!-- </div> -->
+    
+    <!-- <div class="lower">
+        
+        
+    </div>     -->
+            </div>
+
+        
+    </div>
+
+
+
+
+
+
+    <!-- <div class="out-box" >
+
+        <div class="outer-wrapper">
+            <div class="inner-wrapper">
+                <div class="container book-cover">
+                    <img src="{{bookList.0.imgLink}}" alt="book1">
+                </div>
+                <div class="container book-text">
+                    <div class="book-title">
+                       <b>{{bookList.0.bname}} </b> 
+                    </div>
+                    <span class="out-author">
+                        By
+                        <span class="book-author">
+                            {{bookList.0.aname}}
+                        </span>
+                    </span>
+                    <div class="book-rating">
+                        Rating : {{bookList.0.rate}}/5
+                    </div>
+                    <div class="book-desc">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente ex necessitatibus, expedita repellat saepe nam quas doloremque ut exercitationem ratione minima quo eaque asperiores fugiat rerum? Dolores doloremque cupiditate similique!
+                    </div>
+                </div>
+               
+            </div> -->
+    
+            <!-- <div class="inner-wrapper">
+                <div class="container book-cover">
+                    <img src="C:\Users\Ishita\Desktop\CHET\Pepcoding My Projects\Web Development\Book Recommendation\activity\page\book1.jpg" alt="book1">
+                </div>
+                <div class="container book-text">
+                    <div class="book-title">
+                        If it Bleeds
+                    </div>
+                    <span class="out-author">
+                        By
+                        <span class="book-author">
+                            Stephan Hawking
+                        </span>
+                    </span>
+                    <div class="book-rating">
+                        Rating : 2.5/5
+                    </div>
+                    <div class="book-desc">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente ex necessitatibus, expedita repellat saepe nam quas doloremque ut exercitationem ratione minima quo eaque asperiores fugiat rerum? Dolores doloremque cupiditate similique!
+                    </div>
+                </div>
+            </div>
+    
+            <div class="inner-wrapper">
+                <div class="container book-cover">
+                    <img src="C:\Users\Ishita\Desktop\CHET\Pepcoding My Projects\Web Development\Book Recommendation\activity\page\book1.jpg" alt="book1">
+                </div>
+                <div class="container book-text">
+                    <div class="book-title">
+                        If it Bleeds
+                    </div>
+                    <span class="out-author">
+                        By
+                        <span class="book-author">
+                            Stephan Hawking
+                        </span>
+                    </span>
+                    <div class="book-rating">
+                        Rating : 2.5/5
+                    </div>
+                    <div class="book-desc">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente ex necessitatibus, expedita repellat saepe nam quas doloremque ut exercitationem ratione minima quo eaque asperiores fugiat rerum? Dolores doloremque cupiditate similique!
+                    </div>
+                </div>
+            </div> -->
+        <!-- </div>
+        
+    </div> -->
+     
+
+
+    <!-- <p>Book name : {{bookList.0.bname}}</p><br>
+    <p>Author name : {{bookList.0.aname}}</p><br>
+    <p>Rating : {{bookList.0.rate}}</p><br>
+    <img src="{{bookList.0.imgLink}}"> -->
+</body>
+</html>

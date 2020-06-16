@@ -1,0 +1,84 @@
+@media print {
+
+.out-box
+        {
+            display: grid;
+            padding : 5em;
+            background-color: #ffb3b3;
+        }
+
+        .inner-wrapper
+        {
+            background: #eee;
+            padding : 1em;
+        }
+
+        .inner-wrapper:nth-child(odd)
+        {
+            background: #bbb;
+        }
+
+        .outer-wrapper
+        {
+            display: grid;
+            /*grid-template-rows: 100% 100% 100%;*/
+            grid-gap: 2em;
+        }
+
+        .inner-wrapper
+        {
+            display: grid;
+            grid-template-columns: 25% 75%;
+            grid-gap: .5em;
+        }
+
+        /* .container
+        {
+            border: black 2px solid;
+        } */
+
+        .book-cover
+        {
+            text-align: center;
+        }
+
+        .book-text
+        {
+            display: grid;
+            grid-template-rows: 6% 6% 6% 82%;
+            grid-gap: .5em;
+            /* border: red 2px solid; */
+        }
+
+        /* .book-text > div
+        {
+            font-size: x-large;
+            border: red 2px solid; 
+        } */
+
+        .book-title
+        {
+            font-size: xx-large;
+            font-weight :bolder;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .book-author
+        {
+            font-size: x-large;
+            font-weight :bold;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .out-author
+        {
+            font-size: x-large;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .book-rating
+        {
+            font-size: x-large;
+            font-family: 'Times New Roman', Times, serif;
+        }
+    }     
