@@ -3,7 +3,6 @@ let handlebars = require("handlebars");
 let path = require("path");
 let fs = require("fs");
 let prompt = require("prompt-sync")();
-var emoji = require('node-emoji');
 
 
 let credentialsFile = process.argv[2];
@@ -181,7 +180,7 @@ let login,email,pass,arrayOfObjects;
         await tab.pdf(options);
 
         console.log("\n Thanks for your patience!!!")
-        console.log("\n ❤️ Your books are waiting for you ❤️")
+        console.log("\n ❤️   Your books are waiting for you ❤️")
 
     }
     catch (err) {
