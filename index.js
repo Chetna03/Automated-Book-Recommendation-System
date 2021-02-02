@@ -4,20 +4,18 @@ let path = require("path");
 let fs = require("fs");
 let prompt = require("prompt-sync")();
 
-
 let credentialsFile = process.argv[2];
 
 console.log("\n");
 const genre = prompt("▶️   Which genre would you like to read?   ");
 
-console.log("\n Great Choice! ");
+console.log("\n Great Choice! "+genre);
 let login,email,pass,arrayOfObjects;
 
 (async function()
 {
     try
     {       
-
         var templateHtml = fs.readFileSync(path.join(process.cwd(), 'pdfContent.html'), 'utf8');
         var template = handlebars.compile(templateHtml);    
 
@@ -31,8 +29,6 @@ let login,email,pass,arrayOfObjects;
             path: 'Recommendations.pdf'
         }
 
-        
-
         let data = await fs.promises.readFile(credentialsFile,"utf-8");
         let cred = JSON.parse(data);
         login = cred.login;
@@ -40,7 +36,7 @@ let login,email,pass,arrayOfObjects;
         pass = cred.pwd;
 
         let browser = await puppeteer.launch({
-            headless : true,
+            headless : false,
             defaultViewport : null,
             args : ["--start-maximized", "--disable-notifications"]
         });
@@ -67,8 +63,6 @@ let login,email,pass,arrayOfObjects;
 
         await tab.goto("https://www.goodreads.com/genres", { waitUntil: "networkidle2" });
 
-        
-
         await tab.waitForSelector("#shelf");
         await tab.type("#shelf", genre, { delay: 100 });
         await navHelper(tab,".gr-button.u-marginLeftTiny");
@@ -80,7 +74,6 @@ let login,email,pass,arrayOfObjects;
 
         let bookArr = await tab.$$(".coverWrapper a");
     
-
         let storage = [];
 
         for(let i=0 ; i<5 ; i++)
@@ -90,7 +83,6 @@ let login,email,pass,arrayOfObjects;
             }, bookArr[i]);
         }
         
-
         console.log("\n ⭐ We have found some interesting books for you to read.");
         console.log("\n They'll be ready in a minute..");
 
@@ -103,32 +95,23 @@ let login,email,pass,arrayOfObjects;
             await tab.waitForSelector("#bookTitle");
             let bookName = await tab.evaluate(() => document.querySelector('#bookTitle').textContent);
             bookName = bookName.replace(/(\r\n|\n|\r)/gm," ").replace(/'/g, "’").replace(/#/g, "No.").trim();
-            
-            //console.log('Book Name = ' + bookName);
 
             await tab.waitForSelector("#bookAuthors .authorName span");
             let authorName = await tab.evaluate(() => document.querySelector('#bookAuthors .authorName span').textContent);
             authorName = authorName.replace(/(\r\n|\n|\r)/gm," ").replace(/'/g, "’").replace(/#/g, "No.").trim();
-            
-            //console.log('Author name = ' + authorName);
 
             await tab.waitForSelector("#bookMeta span[itemprop='ratingValue']");
             let rating = await tab.evaluate(() => document.querySelector('#bookMeta span[itemprop="ratingValue"]').textContent);
             rating = rating.replace(/(\r\n|\n|\r)/gm," ").replace(/'/g, "’").replace(/#/g, "No.").trim();
 
-            //console.log('Rating = ' + rating);
-
             let bookCover = await tab.$("#coverImage");
             let image = await tab.evaluate(function (q) {
                 return q.getAttribute("src");
             }, bookCover);
-            
-           //console.log('Image link = ' + image);
 
             let finalDesc;
 
             let moreButton = await tab.$("#description a").catch(() => {
-                //console.log("No node found for selector: #description a wala error");
             });
 
             if(moreButton)
@@ -143,9 +126,6 @@ let login,email,pass,arrayOfObjects;
             }
 
             finalDesc = finalDesc.replace(/'/g, "’").replace(/#/g, "No.").trim();
-            
-            //console.log('Book Desc = ' + finalDesc);
-
 
             let what = await fs.promises.readFile("books.json","utf-8");
             arrayOfObjects = await JSON.parse(what);
@@ -157,11 +137,8 @@ let login,email,pass,arrayOfObjects;
                         desc : finalDesc
                     })
 
-            //console.log(arrayOfObjects);
-
             await fs.writeFile('books.json', JSON.stringify(arrayOfObjects), 'utf-8', function(err) {
                 if (err) throw err
-                //console.log('Done!')
             });
 
         }
@@ -175,19 +152,14 @@ let login,email,pass,arrayOfObjects;
             waitUntil: 'networkidle0'
         });
         
-        
-
         await tab.pdf(options);
 
         console.log("\n Thanks for your patience!!!")
         console.log("\n ❤️   Your books are waiting for you ❤️")
-
     }
     catch (err) {
         console.log(err);
     }    
-
-
 })()
 
 async function navHelper(tab,selector)
